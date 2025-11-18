@@ -1,28 +1,50 @@
 #include "stm32f10x.h"                  // Device header
-#include "Delay.h"
+#include "Timer.h"
+#include "Key.h"
 #include "OLED.h"
+#include "Motor.h"
+#include "Menu.h"
+
+uint8_t Key_No; //返回按下的按键是哪个
+uint8_t Mode_Num;//返回现在是哪个模式   1--发车模式，2--调试模式
 
 int main(void)
 {
-	/*模块初始化*/
-	OLED_Init();		//OLED初始化
+	Timer_Init();
+	OLED_Init();		
+	Key_Init();
+	Motor_Init();
+		OLED_Clear();
+	OLED_ShowString(1,1,"1->start");
+
 	
-	/*OLED显示*/
-	OLED_ShowChar(1, 1, 'A');				//1行1列显示字符A
+
 	
-	OLED_ShowString(1, 3, "HelloWorld!");	//1行3列显示字符串HelloWorld!
-	
-	OLED_ShowNum(2, 1, 12345, 5);			//2行1列显示十进制数字12345，长度为5
-	
-	OLED_ShowSignedNum(2, 7, -66, 2);		//2行7列显示有符号十进制数字-66，长度为2
-	
-	OLED_ShowHexNum(3, 1, 0xAA55, 4);		//3行1列显示十六进制数字0xA5A5，长度为4
-	
-	OLED_ShowBinNum(4, 1, 0xAA55, 16);		//4行1列显示二进制数字0xA5A5，长度为16
-											//C语言无法直接写出二进制数字，故需要用十六进制表示
 	
 	while (1)
 	{
 		
+		Key_No=Key_GetNum();
+		
+		Menu1();
+		
+		
+	}
+	
+	
+}
+
+
+
+void TIM3_IRQHandler(void)
+{
+	static uint16_t Count;
+	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET)
+	{
+		Key_Tick();   //每ms进一次中断
+	
+		
+		TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
+
 	}
 }
