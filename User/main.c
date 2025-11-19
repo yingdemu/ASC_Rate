@@ -4,9 +4,7 @@
 #include "OLED.h"
 #include "Motor.h"
 #include "Menu.h"
-
-uint8_t Key_No; //返回按下的按键是哪个
-uint8_t Mode_Num;//返回现在是哪个模式   1--发车模式，2--调试模式
+#include "Serial.h"
 
 int main(void)
 {
@@ -14,17 +12,13 @@ int main(void)
 	OLED_Init();		
 	Key_Init();
 	Motor_Init();
-		OLED_Clear();
-	OLED_ShowString(1,1,"1->start");
+	Serial_Init();
 
-	
-
-	
 	
 	while (1)
 	{
 		
-		Key_No=Key_GetNum();
+
 		
 		Menu1();
 		
@@ -42,7 +36,7 @@ void TIM3_IRQHandler(void)
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET)
 	{
 		Key_Tick();   //每ms进一次中断
-	
+		Serial_Tick();
 		
 		TIM_ClearITPendingBit(TIM3,TIM_IT_Update);
 
