@@ -184,12 +184,25 @@ uint32_t OLED_Pow(uint32_t X, uint32_t Y)
   * @param  Length 要显示数字的长度，范围：1~10
   * @retval 无
   */
-void OLED_ShowNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length)
+void OLED_ShowNum(uint8_t Line, uint8_t Column, int32_t Number, uint8_t Length)
 {
 	uint8_t i;
+	
+	if(Number>=0){
 	for (i = 0; i < Length; i++)							
 	{
 		OLED_ShowChar(Line, Column + i, Number / OLED_Pow(10, Length - i - 1) % 10 + '0');
+	}
+	}
+	else{
+		Number=-Number;
+		OLED_ShowChar(Line,Column-1,'-');
+		for (i = 0; i < Length; i++)							
+	{
+		
+		OLED_ShowChar(Line, Column + i, Number / OLED_Pow(10, Length - i - 1) % 10 + '0');
+	}
+
 	}
 }
 

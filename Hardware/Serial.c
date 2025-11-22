@@ -39,7 +39,7 @@ if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 0 )&&(GPIO_ReadInputDataBit(GPI
 {
 	return 1;
 }
-	if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 1 )&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_9) == 1)&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_10) == 1)&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) ==1)) 		
+	if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 1 )&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) ==1)) 		
 	{
 	return 1;
 	}

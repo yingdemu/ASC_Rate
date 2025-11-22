@@ -3,68 +3,68 @@
 #include "Key.h"
 #include "Car.h"
 
-uint16_t Content_PWM_str_left_right; //Content_PWM_...代表各个模式的PWM值，在外部用extern引用
-uint16_t Content_PWM_x_lef_Left;
-uint16_t Content_PWM_x_lef_Right;
-uint16_t Content_PWM_x_rig_Left;
-uint16_t Content_PWM_x_rig_Right;                 //在此处直接赋值可以改变PWM的初始值，需要在调车时将此处的值都赋好
-uint16_t  Content_PWM_rig_Left;
-uint16_t  Content_PWM_rig_Right;
-uint16_t  Content_PWM_lef_Left;
-uint16_t  Content_PWM_lef_Right;
+int16_t Content_PWM_str_left_right=70; //Content_PWM_...代表各个模式的PWM值，在外部用extern引用
+int16_t Content_PWM_x_lef_Left=40;
+int16_t Content_PWM_x_lef_Right=80;
+int16_t Content_PWM_x_rig_Left=80;
+int16_t Content_PWM_x_rig_Right=40;                 //在此处直接赋值可以改变PWM的初始值，需要在调车时将此处的值都赋好
+int16_t  Content_PWM_rig_Left=80;
+int16_t  Content_PWM_rig_Right=-73;
+int16_t  Content_PWM_lef_Left=-73;
+int16_t  Content_PWM_lef_Right=80;
 //===============================================
 
-uint16_t Postion_Menu1=1;  //记录Menu1中光标的位置
-uint16_t Key_Menu1; //记录Menu1中的按键
+int16_t Postion_Menu1=1;  //记录Menu1中光标的位置
+int16_t Key_Menu1; //记录Menu1中的按键
 
-uint16_t Postion_Menu1_Change=1;  //记录Menu1_Change中光标的位置
-uint16_t Key_Menu1_Change; //记录Menu1_Change中的按键
+int16_t Postion_Menu1_Change=1;  //记录Menu1_Change中光标的位置
+int16_t Key_Menu1_Change; //记录Menu1_Change中的按键
 
-uint16_t Postion_Menu1_Change_str=1;  	
-uint16_t Key_Menu1_Change_str; 					
+int16_t Postion_Menu1_Change_str=1;  	
+int16_t Key_Menu1_Change_str; 					
 
-uint16_t Postion_Menu1_Change_x_lef=1;  
-uint16_t Key_Menu1_Change_x_lef; 				
+int16_t Postion_Menu1_Change_x_lef=1;  
+int16_t Key_Menu1_Change_x_lef; 				
 
-uint16_t Postion_Menu1_Change_x_rig=1;  
-uint16_t Key_Menu1_Change_x_rig; 				
+int16_t Postion_Menu1_Change_x_rig=1;  
+int16_t Key_Menu1_Change_x_rig; 				
 
-uint16_t Postion_Menu1_Change_lef=1;  	
-uint16_t Key_Menu1_Change_lef; 					
+int16_t Postion_Menu1_Change_lef=1;  	
+int16_t Key_Menu1_Change_lef; 					
 
-uint16_t Postion_Menu1_Change_rig=1;  	
-uint16_t Key_Menu1_Change_rig;			 		
+int16_t Postion_Menu1_Change_rig=1;  	
+int16_t Key_Menu1_Change_rig;			 		
 
-uint16_t Postion_Menu1_Change_str_right_left=1;  	
-uint16_t Key_Menu1_Change_str_right_left;			 		
+int16_t Postion_Menu1_Change_str_right_left=70;  	
+int16_t Key_Menu1_Change_str_right_left;			 		
 
 
-uint16_t Postion_Menu1_Change_x_lef_Left=1;  	
-uint16_t Key_Menu1_Change_x_lef_Left;			 		
+int16_t Postion_Menu1_Change_x_lef_Left=40;  	
+int16_t Key_Menu1_Change_x_lef_Left;			 		
 
-uint16_t Postion_Menu1_Change_x_lef_Right=1;  	
-uint16_t Key_Menu1_Change_x_lef_Right;			 		
+int16_t Postion_Menu1_Change_x_lef_Right=80;  	
+int16_t Key_Menu1_Change_x_lef_Right;			 		
 
-uint16_t  Key_Menu1_Change_rig_Left;
-uint16_t  Postion_Menu1_Change_rig_Left=1;
+int16_t  Key_Menu1_Change_rig_Left;
+int16_t  Postion_Menu1_Change_rig_Left=89;
 
-uint16_t Key_Menu1_Change_rig_Right;   
-uint16_t Postion_Menu1_Change_rig_Right=1;
+int16_t Key_Menu1_Change_rig_Right;   
+int16_t Postion_Menu1_Change_rig_Right=-73;
 
-uint16_t  Key_Menu1_Change_lef_Left;
-uint16_t  Postion_Menu1_Change_lef_Left=1;
+int16_t  Key_Menu1_Change_lef_Left;
+int16_t  Postion_Menu1_Change_lef_Left=-73;
 
-uint16_t Key_Menu1_Change_lef_Right;   
-uint16_t Postion_Menu1_Change_lef_Right=1;
+int16_t Key_Menu1_Change_lef_Right;   
+int16_t Postion_Menu1_Change_lef_Right=89;
 //============================
-uint16_t Postion_Menu1_Change_x_rig_Right=1;
-uint16_t Key_Menu1_Change_x_rig_Right;
+int16_t Postion_Menu1_Change_x_rig_Right=40;
+int16_t Key_Menu1_Change_x_rig_Right;
 
-uint16_t Postion_Menu1_Change_x_rig_Left=1;
-uint16_t Key_Menu1_Change_x_rig_Left;
+int16_t Postion_Menu1_Change_x_rig_Left=80;
+int16_t Key_Menu1_Change_x_rig_Left;
 
-uint16_t Postion_Menu1_Start=1;
-uint16_t Key_Menu1_Start;
+int16_t Postion_Menu1_Start=1;
+int16_t Key_Menu1_Start;
 
 //---------------------------------------------------------------------------------------------
 void Menu1_Start(void) //Menu1_Start函数
