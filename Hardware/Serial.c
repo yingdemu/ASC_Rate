@@ -37,7 +37,7 @@ uint8_t Serial_GetState(void)
 	
 if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 0 )&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_9) == 0)&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_10) == 0)&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) ==0)) 		
 {
-	return 1;
+	return 6;
 }
 	if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 1 )&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) ==1)) 		
 	{

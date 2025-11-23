@@ -3,7 +3,11 @@
 #include "OLED.h"
 #include "Motor.h"
 #include "Key.h"
+#include "Delay.h"
 uint8_t  Car_Mode;
+uint8_t Flag_Car_Tick=0;
+uint16_t Car_Tick_Num;
+
 //-------------------
 extern         int16_t Content_PWM_str_left_right; //Content_PWM_...代表各个模式的PWM值，在外部用extern引用
 extern         int16_t Content_PWM_x_lef_Left;
@@ -26,6 +30,8 @@ void		Car_Right(void){
 		OLED_ShowNum(3,3,Content_PWM_rig_Right,3);  //验证程序是否可以走到这一步，  结果：可以
 		OLED_ShowNum(4,3,Content_PWM_rig_Left,3);  //验证程序是否可以走到这一步，  结果：可以
 
+	Flag_Car_Tick=0;
+	Car_Tick_Num=0;
 }
 void		Car_Left(void)
 {
@@ -37,6 +43,8 @@ void		Car_Left(void)
 		OLED_ShowNum(3,3,Content_PWM_lef_Right,3);  //验证程序是否可以走到这一步，  结果：可以
 		OLED_ShowNum(4,3,Content_PWM_lef_Left,3);  //验证程序是否可以走到这一步，  结果：可以
 
+	Flag_Car_Tick=0;
+	Car_Tick_Num=0;
 }
 
 void		Car_x_Right(void){
@@ -48,6 +56,8 @@ void		Car_x_Right(void){
 		OLED_ShowNum(3,3,Content_PWM_x_rig_Right,3);  //验证程序是否可以走到这一步，  结果：可以
 		OLED_ShowNum(4,3,Content_PWM_x_rig_Left,3);  //验证程序是否可以走到这一步，  结果：可以
 
+	Flag_Car_Tick=0;
+	Car_Tick_Num=0;
 }
 
 void		Car_x_Left(void)
@@ -59,7 +69,8 @@ void		Car_x_Left(void)
 
 		OLED_ShowNum(3,3,Content_PWM_x_lef_Right,3);  //验证程序是否可以走到这一步，  结果：可以
 		OLED_ShowNum(4,3,Content_PWM_x_lef_Left,3);  //验证程序是否可以走到这一步，  结果：可以
-
+Flag_Car_Tick=0;
+	Car_Tick_Num=0;
 }
 	
 	
@@ -71,9 +82,32 @@ void		Car_Straight(void)
 		OLED_ShowString(4,1,"               ");
 
 		OLED_ShowNum(3,3,Content_PWM_str_left_right,3);  //验证程序是否可以走到这一步，  结果：可以
+
+Flag_Car_Tick=0;
+	Car_Tick_Num=0;
 }
 	
-	
+
+void Car_Back(void)
+{
+	Motor_SetPWM_Right(-90);
+	Motor_SetPWM_Left(-90);
+Flag_Car_Tick=0;
+	Car_Tick_Num=0;
+}
+
+
+void Car_Tick(void)
+{
+
+	Car_Tick_Num++;
+	if(Car_Tick_Num>=300){
+	Car_Tick_Num=0;
+		Car_Back();
+		Delay_ms(500);
+	}
+}
+
 
 
 uint8_t Keys;
@@ -105,13 +139,22 @@ void Car_Trail(void)
 		if(Car_Mode==4)
 		{
 			Car_Left();
+			Delay_ms(50);
+
 		}
 		
 		if(Car_Mode==5)
 		{
 			Car_Right();
+			Delay_ms(50);
+
 		}
-		
+		if(Car_Mode==6)
+		{
+			Flag_Car_Tick=1;
+		//	Delay_ms(200);
+		}
+
 		if(Keys==1)
 		{
 					Motor_SetPWM_Right(0);

@@ -29,12 +29,16 @@ int main(void)
 }
 
 
+extern uint8_t Flag_Car_Tick;;
 
 void TIM3_IRQHandler(void)
 {
 	static uint16_t Count;
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET)
 	{
+		if(Flag_Car_Tick==1){
+		Car_Tick();
+		}
 		Key_Tick();   //每ms进一次中断
 		Serial_Tick();
 		
