@@ -5,6 +5,7 @@
 #include "Motor.h"
 #include "Menu.h"
 #include "Serial.h"
+#include "Car.h"
 
 int main(void)
 {
@@ -29,13 +30,25 @@ int main(void)
 }
 
 
-extern uint8_t Flag_Car_Tick;;
+extern uint8_t Flag_Car_Tick;
+extern uint8_t Flag_Car_Shizi_Tick;
+extern uint8_t Flag_Car_Shizi_Tick2;
 
 void TIM3_IRQHandler(void)
 {
 	static uint16_t Count;
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET)
 	{
+		if(Flag_Car_Shizi_Tick2==1)
+		{
+		Car_Shizi_Tick2();
+		}
+
+		if(Flag_Car_Shizi_Tick==1)
+		{
+		Car_Shizi_Tick();
+		}
+		
 		if(Flag_Car_Tick==1){
 		Car_Tick();
 		}

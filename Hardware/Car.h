@@ -7,7 +7,9 @@ void		Car_x_Left(void);
 void		Car_x_Right(void);
 void		Car_Left(void);
 void		Car_Right(void);
-void Car_Tick(void);
+void  Car_Tick(void);
+void Car_Shizi_Tick2(void);
+void Car_Shizi_Tick(void);
 
 
 #endif
