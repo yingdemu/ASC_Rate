@@ -30,7 +30,7 @@ extern         int16_t  Content_PWM_lef_Left;
 extern         int16_t  Content_PWM_lef_Right;
 extern         uint8_t Serial_Num;
 
-
+uint8_t Flag_Right_Low=0;
 void		Car_Right(void){
 	
 	Motor_SetPWM_Right(Content_PWM_rig_Right);
@@ -41,6 +41,8 @@ void		Car_Right(void){
 OLED_ShowString (3,1,"Right");
 	Flag_Car_Tick=0;
 	Car_Tick_Num=0;
+	
+	Flag_Right_Low=1;
 while(1)
 	{		
 
@@ -53,7 +55,7 @@ while(1)
 	}
 	}
 }
-
+uint8_t Flag_Left_Low=0;
 void		Car_Left(void)
 {
 	Motor_SetPWM_Right(Content_PWM_lef_Right);
@@ -65,6 +67,7 @@ OLED_ShowString (3,1,"Left");
 
 	Flag_Car_Tick=0;
 	Car_Tick_Num=0;
+	Flag_Left_Low=1;
 while(1)
 	{		
 
@@ -105,6 +108,13 @@ Flag_Car_Tick=0;
 	
 void		Car_Straight(void)
 {
+	
+	if(Flag_Right_Low==1||Flag_Left_Low==1)
+	{
+	Content_PWM_str_left_right=50;
+	}else{
+	Content_PWM_str_left_right=80;
+	}
 		Motor_SetPWM_Right(Content_PWM_str_left_right);
 	Motor_SetPWM_Left(Content_PWM_str_left_right);
 			OLED_ShowString(3,1,"               ");
@@ -234,7 +244,18 @@ void Car_Trail(void)
 			
 			return ;
 		}
+		
+
 
 	}
 }
-
+uint16_t Car_Str_Low_Cnt=0;
+void Car_Str_Low(void)
+{
+	Car_Str_Low_Cnt++;
+	if(Car_Str_Low_Cnt>=1000)
+	{
+	Flag_Left_Low=0;
+		Flag_Right_Low=0;
+	}
+}

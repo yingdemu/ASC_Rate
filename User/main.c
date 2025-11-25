@@ -33,12 +33,18 @@ int main(void)
 extern uint8_t Flag_Car_Tick;
 extern uint8_t Flag_Car_Shizi_Tick;
 extern uint8_t Flag_Car_Shizi_Tick2;
+extern uint8_t Flag_Right_Low;
+extern uint8_t Flag_Left_Low;
 
 void TIM3_IRQHandler(void)
 {
 	static uint16_t Count;
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET)
 	{
+			if(Flag_Right_Low==1||Flag_Left_Low==1)
+			{
+			Car_Str_Low();
+			}
 		if(Flag_Car_Shizi_Tick2==1)
 		{
 		Car_Shizi_Tick2();
