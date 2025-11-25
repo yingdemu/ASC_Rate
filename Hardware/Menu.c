@@ -9,8 +9,8 @@ int16_t Content_PWM_x_lef_Right=80;  //80
 int16_t Content_PWM_x_rig_Left=80;   //80
 int16_t Content_PWM_x_rig_Right=40;     //   40         //在此处直接赋值可以改变PWM的初始值，需要在调车时将此处的值都赋好
 int16_t  Content_PWM_rig_Left=80;   ////80
-int16_t  Content_PWM_rig_Right=-70;  //-73
-int16_t  Content_PWM_lef_Left=-70;  //-73
+int16_t  Content_PWM_rig_Right=-40;  //-70
+int16_t  Content_PWM_lef_Left=-40;  //-70
 int16_t  Content_PWM_lef_Right=80;  //80
 //===============================================
 
@@ -49,10 +49,10 @@ int16_t  Key_Menu1_Change_rig_Left;
 int16_t  Postion_Menu1_Change_rig_Left=80;
 
 int16_t Key_Menu1_Change_rig_Right;   
-int16_t Postion_Menu1_Change_rig_Right=-70;
+int16_t Postion_Menu1_Change_rig_Right=-50;
 
 int16_t  Key_Menu1_Change_lef_Left;
-int16_t  Postion_Menu1_Change_lef_Left=-70;
+int16_t  Postion_Menu1_Change_lef_Left=-50;
 
 int16_t Key_Menu1_Change_lef_Right;   
 int16_t Postion_Menu1_Change_lef_Right=80;

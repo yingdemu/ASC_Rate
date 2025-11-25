@@ -10,6 +10,7 @@ void		Car_Right(void);
 void  Car_Tick(void);
 void Car_Shizi_Tick2(void);
 void Car_Shizi_Tick(void);
+void Car_Str_Low(void);
 
 
 #endif

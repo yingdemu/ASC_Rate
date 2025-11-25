@@ -13,6 +13,7 @@ uint8_t Flag_Car_Shizi_Tick=0;
 
 uint16_t Car_Shizi_Tick_Num;
 
+uint16_t Car_Str_Low_Cnt=0;
 
 uint8_t Flag_Car_Shizi_Tick2=0;
 
@@ -41,7 +42,9 @@ void		Car_Right(void){
 OLED_ShowString (3,1,"Right");
 	Flag_Car_Tick=0;
 	Car_Tick_Num=0;
-	
+			Car_Str_Low_Cnt=0;
+	Flag_Car_Shizi_Tick2 =0;
+
 	Flag_Right_Low=1;
 while(1)
 	{		
@@ -64,7 +67,9 @@ void		Car_Left(void)
 		OLED_ShowString(4,1,"               ");
 
 OLED_ShowString (3,1,"Left");
+		Car_Str_Low_Cnt=0;
 
+	Flag_Car_Shizi_Tick =0;
 	Flag_Car_Tick=0;
 	Car_Tick_Num=0;
 	Flag_Left_Low=1;
@@ -82,6 +87,16 @@ while(1)
 }
 
 void		Car_x_Right(void){
+	
+		if(Flag_Right_Low==1||Flag_Left_Low==1)
+	{
+	Content_PWM_x_rig_Right=30;
+		Content_PWM_x_rig_Left=60;
+	}else{
+	Content_PWM_x_rig_Right=40;
+		Content_PWM_x_rig_Left=80;
+	}
+
 	Motor_SetPWM_Right(Content_PWM_x_rig_Right);
 	Motor_SetPWM_Left(Content_PWM_x_rig_Left);
 		OLED_ShowString(3,1,"               ");
@@ -95,6 +110,15 @@ OLED_ShowString (3,1,"x_Right");
 
 void		Car_x_Left(void)
 {
+	if(Flag_Right_Low==1||Flag_Left_Low==1)
+	{
+	Content_PWM_x_lef_Left=30;
+		Content_PWM_x_lef_Right=60;
+	}else{
+	Content_PWM_x_lef_Right=80;
+		Content_PWM_x_lef_Left=40;
+	}
+
 		Motor_SetPWM_Right(Content_PWM_x_lef_Right);
 	Motor_SetPWM_Left(Content_PWM_x_lef_Left);
 		OLED_ShowString(3,1,"               ");
@@ -145,7 +169,7 @@ void Car_Tick(void)
 {
 
 	Car_Tick_Num++;
-	if(Car_Tick_Num>=15){
+	if(Car_Tick_Num>=150){
 	Car_Tick_Num=0;
 		Car_Back();
 //		Delay_ms(50);
@@ -249,12 +273,12 @@ void Car_Trail(void)
 
 	}
 }
-uint16_t Car_Str_Low_Cnt=0;
 void Car_Str_Low(void)
 {
 	Car_Str_Low_Cnt++;
-	if(Car_Str_Low_Cnt>=1000)
-	{
+	if(Car_Str_Low_Cnt>=250){
+	
+		Car_Str_Low_Cnt=0;
 	Flag_Left_Low=0;
 		Flag_Right_Low=0;
 	}
