@@ -4,14 +4,14 @@
 #include "Car.h"
 
 int16_t Content_PWM_str_left_right=80;  //70 //Content_PWM_...代表各个模式的PWM值，在外部用extern引用
-int16_t Content_PWM_x_lef_Left=30 ;      //40
+int16_t Content_PWM_x_lef_Left=40 ;      //40
 int16_t Content_PWM_x_lef_Right=80;  //80
 int16_t Content_PWM_x_rig_Left=80;   //80
-int16_t Content_PWM_x_rig_Right=30;     //   40         //在此处直接赋值可以改变PWM的初始值，需要在调车时将此处的值都赋好
+int16_t Content_PWM_x_rig_Right=40;     //   40         //在此处直接赋值可以改变PWM的初始值，需要在调车时将此处的值都赋好
 int16_t  Content_PWM_rig_Left=80;   ////80
-int16_t  Content_PWM_rig_Right=-20;  //-73
-int16_t  Content_PWM_lef_Left=-20;  //-73
-int16_t  Content_PWM_lef_Right=89;  //80
+int16_t  Content_PWM_rig_Right=-40;  //-73
+int16_t  Content_PWM_lef_Left=-40;  //-73
+int16_t  Content_PWM_lef_Right=80;  //80
 //===============================================
 
 int16_t Postion_Menu1=1;  //记录Menu1中光标的位置
@@ -49,10 +49,10 @@ int16_t  Key_Menu1_Change_rig_Left;
 int16_t  Postion_Menu1_Change_rig_Left=89;
 
 int16_t Key_Menu1_Change_rig_Right;   
-int16_t Postion_Menu1_Change_rig_Right=0;
+int16_t Postion_Menu1_Change_rig_Right=-40;
 
 int16_t  Key_Menu1_Change_lef_Left;
-int16_t  Postion_Menu1_Change_lef_Left=0;
+int16_t  Postion_Menu1_Change_lef_Left=-40;
 
 int16_t Key_Menu1_Change_lef_Right;   
 int16_t Postion_Menu1_Change_lef_Right=89;

@@ -15,7 +15,7 @@ void Serial_Init(void)
 	
 }
 
-uint8_t Serial_GetMode(void)    //1->直行 2->左小  3->右小  4->左  5->右
+int8_t Serial_GetMode(void)    //1->直行 2->左小  3->右小  4->左  5->右
 {
 	uint8_t Temp;			
 	if (Serial_Num)			
@@ -27,7 +27,7 @@ uint8_t Serial_GetMode(void)    //1->直行 2->左小  3->右小  4->左  5->右
 	return 0;				
 }
 
-uint8_t Serial_GetState(void)
+int8_t Serial_GetState(void)
 {
 	//直行
 	if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 0 )&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_9) == 1)&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_10) == 1)&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) ==0)) 		

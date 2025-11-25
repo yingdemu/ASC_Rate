@@ -4,7 +4,9 @@
 #include "Motor.h"
 #include "Key.h"
 #include "Delay.h"
-uint8_t  Car_Mode;
+int8_t  Car_Mode;
+int8_t Car_Mode2;
+
 uint8_t Flag_Car_Tick=0;
 uint16_t Car_Tick_Num;
 uint8_t Flag_Car_Shizi_Tick=0;
@@ -39,14 +41,19 @@ void		Car_Right(void){
 OLED_ShowString (3,1,"Right");
 	Flag_Car_Tick=0;
 	Car_Tick_Num=0;
-//for(;;)
-//	{
-//	if(Serial_Num!=5&&Serial_Num!=0)
-//	{
-//		break;
-//	}
-//	}
+while(1)
+	{		
+
+		Car_Mode2=Serial_GetMode();    //1->直行 2->左小  3->右小  4->左  5->右
+		OLED_ShowNum(3,3,Car_Mode2,3);
+		if((Car_Mode2 !=5) && (Car_Mode2 != 6) )
+	{
+		
+		return;
+	}
+	}
 }
+
 void		Car_Left(void)
 {
 	Motor_SetPWM_Right(Content_PWM_lef_Right);
@@ -58,13 +65,17 @@ OLED_ShowString (3,1,"Left");
 
 	Flag_Car_Tick=0;
 	Car_Tick_Num=0;
-//for(;;)
-//	{
-//	if(Serial_Num!=5&&Serial_Num!=0)
-//	{
-//		break;
-//	}
-//	}
+while(1)
+	{		
+
+		Car_Mode2=Serial_GetMode();    //1->直行 2->左小  3->右小  4->左  5->右
+		OLED_ShowNum(3,3,Car_Mode2,3);
+		if((Car_Mode2 !=4) && (Car_Mode2 != 6) )
+	{
+		
+		return;
+	}
+	}
 }
 
 void		Car_x_Right(void){
@@ -124,7 +135,7 @@ void Car_Tick(void)
 {
 
 	Car_Tick_Num++;
-	if(Car_Tick_Num>=30){
+	if(Car_Tick_Num>=15){
 	Car_Tick_Num=0;
 		Car_Back();
 //		Delay_ms(50);
