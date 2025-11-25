@@ -47,12 +47,12 @@ void TIM3_IRQHandler(void)
 			}
 		if(Flag_Car_Shizi_Tick2==1)
 		{
-		Car_Shizi_Tick2();
+		//Car_Shizi_Tick2();
 		}
 
 		if(Flag_Car_Shizi_Tick==1)
 		{
-		Car_Shizi_Tick();
+	//	Car_Shizi_Tick();
 		}
 		
 		if(Flag_Car_Tick==1){

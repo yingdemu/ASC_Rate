@@ -19,6 +19,8 @@ uint8_t Flag_Car_Shizi_Tick2=0;
 
 uint16_t Car_Shizi_Tick_Num2;
 
+void 		Car_Straight();
+
 //-------------------
 extern         int16_t Content_PWM_str_left_right; //Content_PWM_...代表各个模式的PWM值，在外部用extern引用
 extern         int16_t Content_PWM_x_lef_Left;
@@ -51,9 +53,15 @@ while(1)
 
 		Car_Mode2=Serial_GetMode();    //1->直行 2->左小  3->右小  4->左  5->右
 		OLED_ShowNum(3,3,Car_Mode2,3);
-		if((Car_Mode2 !=5) && (Car_Mode2 != 6) )
+		if((Car_Mode2 !=5) && (Car_Mode2 != 7) )
 	{
-		
+				if(Car_Mode2==4)
+		{
+			Car_Straight();
+			Delay_ms (500);
+			return ;
+		}
+
 		return;
 	}
 	}
@@ -78,8 +86,15 @@ while(1)
 
 		Car_Mode2=Serial_GetMode();    //1->直行 2->左小  3->右小  4->左  5->右
 		OLED_ShowNum(3,3,Car_Mode2,3);
-		if((Car_Mode2 !=4) && (Car_Mode2 != 6) )
+		if((Car_Mode2 !=4) && (Car_Mode2 != 7) )
 	{
+		if(Car_Mode2==5)
+		{
+			Car_Straight();
+			Delay_ms (500);
+						return ;
+
+		}
 		
 		return;
 	}
@@ -146,8 +161,8 @@ void		Car_Straight(void)
 
 OLED_ShowString (3,1,"Straight");
 
-Flag_Car_Tick=0;
-	Car_Tick_Num=0;
+//Flag_Car_Tick=0;
+//	Car_Tick_Num=0;
 }
 	
 
@@ -177,41 +192,41 @@ void Car_Tick(void)
 }
 
 
-void Car_Shizi_Tick2(void)
-{
-	Car_Shizi_Tick_Num2++;
-	if(Car_Shizi_Tick_Num2>=20){
-	Car_Shizi_Tick_Num2=0;
-		Flag_Car_Shizi_Tick2 =0;
-		if(Car_Mode==4){
-		Car_Straight();
-		//	Delay_ms (30);
+//void Car_Shizi_Tick2(void)
+//{
+//	Car_Shizi_Tick_Num2++;
+//	if(Car_Shizi_Tick_Num2>=20){
+//	Car_Shizi_Tick_Num2=0;
+//		Flag_Car_Shizi_Tick2 =0;
+//		if(Car_Mode==4){
+//		Car_Straight();
+//		//	Delay_ms (30);
 
-		}
-		else{
-				Car_Right();
+//		}
+//		else{
+//				Car_Right();
 
-		}
-	}
-}
+//		}
+//	}
+//}
 
-void Car_Shizi_Tick(void)
-{
-	Car_Shizi_Tick_Num++;
-	if(Car_Shizi_Tick_Num>=20){
-	Car_Shizi_Tick_Num=0;
-		Flag_Car_Shizi_Tick =0;
-		if(Car_Mode==5){
-		Car_Straight();
-		//	Delay_ms (30);
+//void Car_Shizi_Tick(void)
+//{
+//	Car_Shizi_Tick_Num++;
+//	if(Car_Shizi_Tick_Num>=20){
+//	Car_Shizi_Tick_Num=0;
+//		Flag_Car_Shizi_Tick =0;
+//		if(Car_Mode==5){
+//		Car_Straight();
+//		//	Delay_ms (30);
 
-		}
-		else{
-				Car_Left();
+//		}
+//		else{
+//				Car_Left();
 
-		}
-	}
-}
+//		}
+//	}
+//}
 
 
 uint8_t Keys;
@@ -224,7 +239,8 @@ void Car_Trail(void)
 	{
 		Keys=Key_GetNum();
 		Car_Mode=Serial_GetMode();    //1->直行 2->左小  3->右小  4->左  5->右
-		
+			if(Car_Mode!=0){OLED_ShowNum(4,8,Car_Mode,1);}
+
 		if(Car_Mode==1)
 		{
 			Car_Straight();
@@ -242,16 +258,18 @@ void Car_Trail(void)
 		
 		if(Car_Mode==4)
 		{
-			Flag_Car_Shizi_Tick=1;
+//			Flag_Car_Shizi_Tick=1;
+			Car_Left();
 
 		}
 		
 		if(Car_Mode==5)
 		{
-				Flag_Car_Shizi_Tick2=1;
+//				Flag_Car_Shizi_Tick2=1;
+			Car_Right();
 
 		}
-		if(Car_Mode==6)
+		if(Car_Mode==7)
 		{
 			Flag_Car_Tick=1;
 		//	Delay_ms(200);
@@ -276,7 +294,7 @@ void Car_Trail(void)
 void Car_Str_Low(void)
 {
 	Car_Str_Low_Cnt++;
-	if(Car_Str_Low_Cnt>=250){
+	if(Car_Str_Low_Cnt>=100){
 	
 		Car_Str_Low_Cnt=0;
 	Flag_Left_Low=0;
