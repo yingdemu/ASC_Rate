@@ -13,5 +13,7 @@ void  Car_Tick(void);
 void Car_Str_Low(void);
 void Wait_Tick1(void);
 void Wait_Tick2(void);
+//void Car_No_R_Tick(void);
+//void Car_No_L_Tick(void);
 
 #endif

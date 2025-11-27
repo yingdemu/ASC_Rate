@@ -18,6 +18,11 @@ uint16_t Car_Str_Low_Cnt=0;
 uint8_t Flag_Car_Shizi_Tick2=0;
 
 uint16_t Car_Shizi_Tick_Num2;
+uint16_t Car_No_R_Tick_Cnt=0;
+uint8_t 	Flag_Car_No_R_Tick=0;
+
+uint16_t Car_No_L_Tick_Cnt=0;
+uint8_t 	Flag_Car_No_L_Tick=0;
 
 void 		Car_Straight();
 
@@ -51,6 +56,8 @@ OLED_ShowString (3,1,"Right");
 	Flag_Car_Shizi_Tick2 =0;
 Flag_Wait2=1;
 	Flag_Right_Low=1;
+		Flag_Car_No_L_Tick=1;
+
 while(1)
 	{		
 
@@ -87,6 +94,7 @@ OLED_ShowString (3,1,"Left");
 	Car_Tick_Num=0;
 	Flag_Left_Low=1;
 	Flag_Wait1=1;
+	Flag_Car_No_R_Tick=1;
 while(1)
 	{		
 
@@ -297,6 +305,8 @@ void Car_Trail(void)
 
 	}
 }
+
+
 void Car_Str_Low(void)
 {
 	Car_Str_Low_Cnt++;
@@ -323,7 +333,7 @@ Wait_Tick1_Cnt++;
 		return ;
 
 	}
-	if(Wait_Tick1_Cnt>=700)
+	if(Wait_Tick1_Cnt>=600)
 	{
 		Wait_Tick1_Cnt=0;
 	Flag_Wait1 =0;
@@ -348,10 +358,31 @@ Wait_Tick2_Cnt++;
 		return ;
 
 	}
-	if(Wait_Tick2_Cnt>=700)
+	if(Wait_Tick2_Cnt>=600)
 	{
 		Wait_Tick2_Cnt=0;
 	Flag_Wait2 =0;
 		return ;
 	}
 }
+
+//void Car_No_R_Tick(void)
+//{
+
+//	Car_No_R_Tick_Cnt++;
+//	if(Car_No_R_Tick_Cnt>=450)
+//	{
+//	Flag_Car_No_R_Tick=0;
+//	}
+//}
+
+//void Car_No_L_Tick(void)
+//{
+
+//	Car_No_L_Tick_Cnt++;
+//	if(Car_No_L_Tick_Cnt>=100)
+//	{
+//	Flag_Car_No_L_Tick=0;
+//	}
+//}
+

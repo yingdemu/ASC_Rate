@@ -2,6 +2,8 @@
 
 
 uint8_t Serial_Num;
+extern uint8_t 	Flag_Car_No_R_Tick;
+extern uint8_t 	Flag_Car_No_L_Tick;
 
 void Serial_Init(void)
 {
@@ -62,6 +64,7 @@ if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 0 )&&(GPIO_ReadInputDataBit(GPI
 	//×ó
 	if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 1 )) 		
 	{
+		
 	return 4;
 	}
 
@@ -69,6 +72,7 @@ if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 0 )&&(GPIO_ReadInputDataBit(GPI
 	
 	if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) == 1 )) 		
 	{
+		
 	return 5;
 	}
 

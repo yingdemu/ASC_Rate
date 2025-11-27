@@ -37,6 +37,10 @@ extern uint8_t Flag_Right_Low;
 extern uint8_t Flag_Left_Low;
 extern uint8_t Flag_Wait1;
 extern uint8_t Flag_Wait2;
+extern uint8_t Flag_Car_No_R_Tick;
+extern uint8_t Flag_Car_No_L_Tick;
+
+
 
 void TIM3_IRQHandler(void)
 {
@@ -65,7 +69,11 @@ void TIM3_IRQHandler(void)
 //		{
 //	//	Car_Shizi_Tick();
 //		}
-		
+//			if(Flag_Car_No_R_Tick==1){
+//		Car_No_R_Tick();}
+//						if(Flag_Car_No_L_Tick==1){
+//		Car_No_L_Tick();}
+
 		if(Flag_Car_Tick==1){
 		Car_Tick();
 		}

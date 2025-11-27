@@ -49,10 +49,10 @@ int16_t  Key_Menu1_Change_rig_Left;
 int16_t  Postion_Menu1_Change_rig_Left=80;
 
 int16_t Key_Menu1_Change_rig_Right;   
-int16_t Postion_Menu1_Change_rig_Right=-50;
+int16_t Postion_Menu1_Change_rig_Right=-40;
 
 int16_t  Key_Menu1_Change_lef_Left;
-int16_t  Postion_Menu1_Change_lef_Left=-50;
+int16_t  Postion_Menu1_Change_lef_Left=-40;
 
 int16_t Key_Menu1_Change_lef_Right;   
 int16_t Postion_Menu1_Change_lef_Right=80;
