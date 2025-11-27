@@ -11,6 +11,7 @@ void  Car_Tick(void);
 //void Car_Shizi_Tick2(void);
 //void Car_Shizi_Tick(void);
 void Car_Str_Low(void);
-
+void Wait_Tick1(void);
+void Wait_Tick2(void);
 
 #endif

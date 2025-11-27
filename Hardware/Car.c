@@ -34,6 +34,9 @@ extern         int16_t  Content_PWM_lef_Right;
 extern         uint8_t Serial_Num;
 
 uint8_t Flag_Right_Low=0;
+uint8_t 	Flag_Wait2 =0;
+uint8_t 	Flag_Wait1=0;
+
 void		Car_Right(void){
 	
 	Motor_SetPWM_Right(Content_PWM_rig_Right);
@@ -46,7 +49,7 @@ OLED_ShowString (3,1,"Right");
 	Car_Tick_Num=0;
 			Car_Str_Low_Cnt=0;
 	Flag_Car_Shizi_Tick2 =0;
-
+Flag_Wait2=1;
 	Flag_Right_Low=1;
 while(1)
 	{		
@@ -55,17 +58,19 @@ while(1)
 		OLED_ShowNum(3,3,Car_Mode2,3);
 		if((Car_Mode2 !=5) && (Car_Mode2 != 7) )
 	{
-				if(Car_Mode2==4)
-		{
-			Car_Straight();
-			Delay_ms (500);
-			return ;
-		}
+//				if(Car_Mode2==4)
+//		{
+//			Car_Straight();
+//			Delay_ms (500);
+//			return ;
+//		}
 
 		return;
 	}
 	}
 }
+
+
 uint8_t Flag_Left_Low=0;
 void		Car_Left(void)
 {
@@ -81,6 +86,7 @@ OLED_ShowString (3,1,"Left");
 	Flag_Car_Tick=0;
 	Car_Tick_Num=0;
 	Flag_Left_Low=1;
+	Flag_Wait1=1;
 while(1)
 	{		
 
@@ -88,13 +94,13 @@ while(1)
 		OLED_ShowNum(3,3,Car_Mode2,3);
 		if((Car_Mode2 !=4) && (Car_Mode2 != 7) )
 	{
-		if(Car_Mode2==5)
-		{
-			Car_Straight();
-			Delay_ms (500);
-						return ;
+//		if(Car_Mode2==5)
+//		{
+//			Car_Straight();
+//			Delay_ms (500);
+//						return ;
 
-		}
+//		}
 		
 		return;
 	}
@@ -184,7 +190,7 @@ void Car_Tick(void)
 {
 
 	Car_Tick_Num++;
-	if(Car_Tick_Num>=150){
+	if(Car_Tick_Num>=500){
 	Car_Tick_Num=0;
 		Car_Back();
 //		Delay_ms(50);
@@ -294,10 +300,58 @@ void Car_Trail(void)
 void Car_Str_Low(void)
 {
 	Car_Str_Low_Cnt++;
-	if(Car_Str_Low_Cnt>=100){
+	if(Car_Str_Low_Cnt>=700){
 	
 		Car_Str_Low_Cnt=0;
 	Flag_Left_Low=0;
 		Flag_Right_Low=0;
+	}
+}
+uint16_t Wait_Tick1_Cnt;
+uint8_t Car_Mode3;
+void Wait_Tick1(void)         //十字
+{
+Wait_Tick1_Cnt++;
+			Car_Mode3=Serial_GetMode();    //1->直行 2->左小  3->右小  4->左  5->右
+
+	if(Car_Mode3==5)
+	{
+	Car_x_Left   ();
+		Delay_ms (200);
+		Wait_Tick1_Cnt=0;
+	Flag_Wait1 =0;
+		return ;
+
+	}
+	if(Wait_Tick1_Cnt>=700)
+	{
+		Wait_Tick1_Cnt=0;
+	Flag_Wait1 =0;
+		return ;
+	}
+}
+
+
+uint16_t Wait_Tick2_Cnt;
+uint8_t Car_Mode4;
+void Wait_Tick2(void)   //十字
+{
+Wait_Tick2_Cnt++;
+			Car_Mode4=Serial_GetMode();    //1->直行 2->左小  3->右小  4->左  5->右
+
+	if(Car_Mode4==4)
+	{
+	Car_x_Right  ();
+		Delay_ms (200);
+		Wait_Tick2_Cnt=0;
+	Flag_Wait2 =0;
+		return ;
+
+	}
+	if(Wait_Tick2_Cnt>=700)
+	{
+		Wait_Tick2_Cnt=0;
+	Flag_Wait2 =0;
+		return ;
 	}
 }
