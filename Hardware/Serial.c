@@ -4,7 +4,8 @@
 uint8_t Serial_Num;
 extern uint8_t 	Flag_Car_No_R_Tick;
 extern uint8_t 	Flag_Car_No_L_Tick;
-
+extern uint8_t  Flag_Car_Tick;
+extern uint8_t Flag;
 void Serial_Init(void)
 {
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);	  
@@ -46,6 +47,10 @@ int8_t Serial_GetState(void)
 	//ºóÍË
 if ((GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == 0 )&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_9) == 0)&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_10) == 0)&&(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) ==0)) 		
 {
+	if(Flag==1)
+	{
+	Flag_Car_Tick=1;
+	}
 	return 6;
 }
 	

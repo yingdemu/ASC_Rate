@@ -119,11 +119,11 @@ void		Car_x_Right(void){
 	
 		if(Flag_Right_Low==1||Flag_Left_Low==1)
 	{
-	Content_PWM_x_rig_Right=30;
-		Content_PWM_x_rig_Left=60;
-	}else{
 	Content_PWM_x_rig_Right=40;
-		Content_PWM_x_rig_Left=80;
+		Content_PWM_x_rig_Left=70;
+	}else{
+	Content_PWM_x_rig_Right=45;
+		Content_PWM_x_rig_Left=89;
 	}
 
 	Motor_SetPWM_Right(Content_PWM_x_rig_Right);
@@ -141,11 +141,11 @@ void		Car_x_Left(void)
 {
 	if(Flag_Right_Low==1||Flag_Left_Low==1)
 	{
-	Content_PWM_x_lef_Left=30;
-		Content_PWM_x_lef_Right=60;
+	Content_PWM_x_lef_Left=40;
+		Content_PWM_x_lef_Right=70;
 	}else{
-	Content_PWM_x_lef_Right=80;
-		Content_PWM_x_lef_Left=40;
+	Content_PWM_x_lef_Right=89;
+		Content_PWM_x_lef_Left=45;
 	}
 
 		Motor_SetPWM_Right(Content_PWM_x_lef_Right);
@@ -164,9 +164,9 @@ void		Car_Straight(void)
 	
 	if(Flag_Right_Low==1||Flag_Left_Low==1)
 	{
-	Content_PWM_str_left_right=50;
+	Content_PWM_str_left_right=75;
 	}else{
-	Content_PWM_str_left_right=80;
+	Content_PWM_str_left_right=89;
 	}
 		Motor_SetPWM_Right(Content_PWM_str_left_right);
 	Motor_SetPWM_Left(Content_PWM_str_left_right);
@@ -242,13 +242,13 @@ void Car_Tick(void)
 //	}
 //}
 
-
+uint8_t Flag;
 uint8_t Keys;
 void Car_Trail(void)
 {
 	OLED_Clear ();
 	OLED_ShowString(2,2,"Going");
-	
+	Flag=1;
 	while(1)
 	{
 		Keys=Key_GetNum();
